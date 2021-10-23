@@ -20,12 +20,21 @@ public class RatingsResource {
 
     @RequestMapping("user/{userId}")
     public UserRating getUserRating(@PathVariable("userId") String userId){
+        UserRating userRating = new UserRating();
+        Rating userIdRating = null;
+        //validation of user
+        if(userId != ""){
+             userIdRating =  new Rating(userId,3);
+        }
+        
+        //default resource
         List<Rating> ratings = Arrays.asList(
                 new Rating("123",4),
-                new Rating("456",5)
+                new Rating("456",5),
+                userIdRating
         );
 
-        UserRating userRating = new UserRating();
+        
         userRating.setUserRating(ratings);
 
         return userRating;
