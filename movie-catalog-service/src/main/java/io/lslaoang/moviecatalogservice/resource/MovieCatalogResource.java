@@ -1,5 +1,6 @@
 package io.lslaoang.moviecatalogservice.resource;
 
+import io.lslaoang.moviecatalogservice.model.Catalog;
 import io.lslaoang.moviecatalogservice.model.CatalogItem;
 import io.lslaoang.moviecatalogservice.model.Movie;
 import io.lslaoang.moviecatalogservice.model.UserRating;
@@ -24,20 +25,22 @@ public class MovieCatalogResource {
     private WebClient.Builder webClientbuilder;
 
     @RequestMapping("/{userId}")
-    public List<CatalogItem> getCatalog(@PathVariable("userId")  String userId){
-
-
+    public Catalog getCatalog(@PathVariable("userId")  String userId){
 
         //Get all ratings
         UserRating ratings = restTemplate.getForObject("http://localhost:8082/ratingsdata/user/"+userId, UserRating.class);
 
-        return ratings.getUserRating().stream().map(rating -> {
-
+        List<CatalogItem> ratingList = ratings.getUserRating().stream().map(rating -> {
             //For each movie ID, call  movie info service and get details
             Movie movie = restTemplate.getForObject("http://localhost:8083/movies/"+rating.getMovieId(), Movie.class);
             //Put them all together
-            return new CatalogItem(movie.getName(), "desc",rating.getRating());
+            return new CatalogItem(movie.getName(),"desc",rating.getRating());
         }).collect(Collectors.toList());
+
+        Catalog catalog = new Catalog();
+        catalog.setCatalogItemList(ratingList);
+
+        return  catalog;
     }
 }
 //Asynchronous approach
