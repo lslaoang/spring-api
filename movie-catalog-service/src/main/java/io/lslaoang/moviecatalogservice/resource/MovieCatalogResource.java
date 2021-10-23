@@ -26,15 +26,13 @@ public class MovieCatalogResource {
     @RequestMapping("/{userId}")
     public List<CatalogItem> getCatalog(@PathVariable("userId")  String userId){
 
-
-
         //Get all ratings
-        UserRating ratings = restTemplate.getForObject("http://localhost:8082/ratingsdata/user/"+userId, UserRating.class);
+        UserRating ratings = restTemplate.getForObject("http://localhost:8083/ratingsdata/user/"+userId, UserRating.class);
 
         return ratings.getUserRating().stream().map(rating -> {
 
             //For each movie ID, call  movie info service and get details
-            Movie movie = restTemplate.getForObject("http://localhost:8083/movies/"+rating.getMovieId(), Movie.class);
+            Movie movie = restTemplate.getForObject("http://localhost:8082/movies/"+rating.getMovieId(), Movie.class);
             //Put them all together
             return new CatalogItem(movie.getName(), "desc",rating.getRating());
         }).collect(Collectors.toList());
