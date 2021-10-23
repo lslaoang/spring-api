@@ -1,4 +1,4 @@
-package io.lslaoang.datingsdataservice.model;
+package io.lslaoang.ratingsdataservice.model;
 
 public class Rating {
     private String movieId;

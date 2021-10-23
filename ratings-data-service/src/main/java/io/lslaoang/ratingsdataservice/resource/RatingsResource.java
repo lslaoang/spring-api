@@ -1,6 +1,6 @@
-package io.lslaoang.datingsdataservice.resource;
+package io.lslaoang.ratingsdataservice.resource;
 
-import io.lslaoang.datingsdataservice.model.Rating;
+import io.lslaoang.ratingsdataservice.model.Rating;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

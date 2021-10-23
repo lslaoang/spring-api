@@ -1,10 +1,10 @@
-package io.lslaoang.datingsdataservice;
+package io.lslaoang.ratingsdataservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DatingsDataServiceApplicationTests {
+class RatingsDataServiceApplicationTests {
 
     @Test
     void contextLoads() {

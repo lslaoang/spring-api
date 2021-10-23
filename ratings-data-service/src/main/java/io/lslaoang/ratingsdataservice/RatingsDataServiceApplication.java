@@ -1,13 +1,13 @@
-package io.lslaoang.datingsdataservice;
+package io.lslaoang.ratingsdataservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DatingsDataServiceApplication {
+public class RatingsDataServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DatingsDataServiceApplication.class, args);
+        SpringApplication.run(RatingsDataServiceApplication.class, args);
     }
 
 }

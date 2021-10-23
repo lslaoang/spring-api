@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.lslaoang</groupId>
-    <artifactId>datings-data-service</artifactId>
+    <artifactId>ratings-data-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>datings-data-service</name>
-    <description>datings-data-service</description>
+    <name>ratings-data-service</name>
+    <description>ratings-data-service</description>
     <properties>
         <java.version>11</java.version>
     </properties>
