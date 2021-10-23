@@ -1,4 +1,4 @@
-package io.lslaoang.movieinfoservice.model;
+package io.lslaoang.moviecatalogservice.model;
 
 public class Movie {
 
