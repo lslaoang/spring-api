@@ -1,7 +1,7 @@
 package io.lslaoang.moviecatalogservice.resource;
 
-import io.lslaoang.moviecatalogservice.model.Catalog;
 import io.lslaoang.moviecatalogservice.model.CatalogItem;
+import io.lslaoang.moviecatalogservice.model.CatalogItemList;
 import io.lslaoang.moviecatalogservice.model.Movie;
 import io.lslaoang.moviecatalogservice.model.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class MovieCatalogResource {
     private WebClient.Builder webClientbuilder;
 
     @RequestMapping("/{userId}")
-    public Catalog getCatalog(@PathVariable("userId")  String userId){
+    public CatalogItemList getCatalog(@PathVariable("userId")  String userId){
 
         //Get all ratings
         UserRating ratings = restTemplate.getForObject("http://localhost:8082/ratingsdata/user/"+userId, UserRating.class);
@@ -37,10 +37,10 @@ public class MovieCatalogResource {
             return new CatalogItem(movie.getName(),"desc",rating.getRating());
         }).collect(Collectors.toList());
 
-        Catalog catalog = new Catalog();
-        catalog.setCatalogItemList(ratingList);
+        CatalogItemList catalogItemList = new CatalogItemList();
+        catalogItemList.setCatalogItemList(ratingList);
 
-        return  catalog;
+        return catalogItemList;
     }
 }
 //Asynchronous approach

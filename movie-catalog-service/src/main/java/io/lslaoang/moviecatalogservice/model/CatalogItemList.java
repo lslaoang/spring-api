@@ -2,15 +2,15 @@ package io.lslaoang.moviecatalogservice.model;
 
 import java.util.List;
 
-public class Catalog {
+public class CatalogItemList {
 
     private List<CatalogItem> catalogItemList;
 
-    public Catalog(){
+    public CatalogItemList(){
         //empty constructor
     }
 
-    public Catalog(List<CatalogItem> catalogItemList) {
+    public CatalogItemList(List<CatalogItem> catalogItemList) {
         this.catalogItemList = catalogItemList;
     }
 
