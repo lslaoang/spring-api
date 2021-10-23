@@ -37,15 +37,17 @@ public class MovieCatalogResource {
 
         return ratings.stream().map(rating -> {
 
-            //Movie movie = restTemplate.getForObject("http://localhost:8083/movies/"+rating.getMovieId(), Movie.class);
+            Movie movie = restTemplate.getForObject("http://localhost:8083/movies/"+rating.getMovieId(), Movie.class);
 
             //Asynchronous approach
+            /*
             Movie movie = webClientbuilder.build()
                     .get()
                     .uri("http://localhost:8083/movies/"+rating.getMovieId())
                     .retrieve()
                     .bodyToMono(Movie.class)
                     .block();
+             */
 
             return new CatalogItem(movie.getName(), "desc",rating.getRating());
 
