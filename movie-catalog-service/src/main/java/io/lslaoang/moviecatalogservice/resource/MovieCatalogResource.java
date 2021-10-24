@@ -1,6 +1,7 @@
 package io.lslaoang.moviecatalogservice.resource;
 
 import io.lslaoang.moviecatalogservice.model.CatalogItem;
+import io.lslaoang.moviecatalogservice.model.CatalogItemList;
 import io.lslaoang.moviecatalogservice.model.Movie;
 import io.lslaoang.moviecatalogservice.model.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,22 @@ public class MovieCatalogResource {
     private WebClient.Builder webClientbuilder;
 
     @RequestMapping("/{userId}")
-    public List<CatalogItem> getCatalog(@PathVariable("userId")  String userId){
+    public CatalogItemList getCatalog(@PathVariable("userId")  String userId){
 
         //Get all ratings
         UserRating ratings = restTemplate.getForObject("http://ratings-data-service/ratingsdata/user/"+userId, UserRating.class);
 
-        return ratings.getUserRating().stream().map(rating -> {
-
+        List<CatalogItem> ratingList = ratings.getUserRating().stream().map(rating -> {
             //For each movie ID, call  movie info service and get details
             Movie movie = restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
             //Put them all together
-            return new CatalogItem(movie.getName(), "desc",rating.getRating());
+            return new CatalogItem(movie.getName(),"desc",rating.getRating());
         }).collect(Collectors.toList());
+
+        CatalogItemList catalogItemList = new CatalogItemList();
+        catalogItemList.setCatalogItemList(ratingList);
+
+        return catalogItemList;
     }
 }
 //Asynchronous approach
