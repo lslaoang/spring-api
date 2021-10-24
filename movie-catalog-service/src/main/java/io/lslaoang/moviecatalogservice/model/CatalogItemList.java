@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CatalogItemList {
 
+    /* Added CatalogItemList to handle object type rather than List*/
     private List<CatalogItem> catalogItemList;
 
     public CatalogItemList(){
