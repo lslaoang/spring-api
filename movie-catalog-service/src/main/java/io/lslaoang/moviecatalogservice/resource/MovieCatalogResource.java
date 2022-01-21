@@ -4,7 +4,6 @@ import io.lslaoang.moviecatalogservice.model.CatalogItem;
 import io.lslaoang.moviecatalogservice.model.CatalogItemList;
 import io.lslaoang.moviecatalogservice.model.Movie;
 import io.lslaoang.moviecatalogservice.model.UserRating;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +18,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/catalog")
 public class MovieCatalogResource {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+    private final DiscoveryClient discoveryClient;
+    private final WebClient.Builder webClientbuilder;
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    public MovieCatalogResource(RestTemplate restTemplate, DiscoveryClient discoveryClient, WebClient.Builder webClientbuilder) {
+        this.restTemplate = restTemplate;
+        this.discoveryClient = discoveryClient;
+        this.webClientbuilder = webClientbuilder;
+    }
 
-    @Autowired
-    private WebClient.Builder webClientbuilder;
 
     @RequestMapping("/{userId}")
     public CatalogItemList getCatalog(@PathVariable("userId")  String userId){
