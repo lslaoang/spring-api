@@ -4,12 +4,10 @@ import io.lslaoang.moviecatalogservice.model.CatalogItem;
 import io.lslaoang.moviecatalogservice.model.CatalogItemList;
 import io.lslaoang.moviecatalogservice.model.Movie;
 import io.lslaoang.moviecatalogservice.model.UserRating;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,13 +17,10 @@ import java.util.stream.Collectors;
 public class MovieCatalogResource {
 
     private final RestTemplate restTemplate;
-    private final DiscoveryClient discoveryClient;
-    private final WebClient.Builder webClientbuilder;
 
-    public MovieCatalogResource(RestTemplate restTemplate, DiscoveryClient discoveryClient, WebClient.Builder webClientbuilder) {
+    public MovieCatalogResource(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.discoveryClient = discoveryClient;
-        this.webClientbuilder = webClientbuilder;
+
     }
 
 
