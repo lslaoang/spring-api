@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/catalog")
 public class MovieCatalogResource {
 
+    //rest template will be replaced with webFlux
     private final RestTemplate restTemplate;
 
     public MovieCatalogResource(RestTemplate restTemplate) {
